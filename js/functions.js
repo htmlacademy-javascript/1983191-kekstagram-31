@@ -24,24 +24,24 @@ checkPalindrome('Лёша на полке клопа нашёл '); // true
 
 // 3. Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN
 
-const parseString = (string) => {
-  string = string.toString();
+const extractNumber = (text) => {
+  const workingText = text.toString();
   let result = '';
 
-  for (let i = 0; i <= string.length - 1; i++) {
-    if (!Number.isNaN(parseInt(string[i], 10))) {
-      result += string[i];
+  for (let i = 0; i <= workingText.length - 1; i++) {
+    if (!Number.isNaN(parseInt(workingText[i], 10))) {
+      result += workingText[i];
     }
   }
 
   return parseInt(result, 10);
 };
 
-parseString('2023 год'); // 2023
-parseString('ECMAScript 2022'); // 2022
-parseString('1 кефир, 0.5 батона'); // 105
-parseString('агент 007'); // 7
-parseString('а я томат'); // NaN
-parseString(2023); // 2023
-parseString(-1); // 1
-parseString(1.5); // 15
+extractNumber('2023 год'); // 2023
+extractNumber('ECMAScript 2022'); // 2022
+extractNumber('1 кефир, 0.5 батона'); // 105
+extractNumber('агент 007'); // 7
+extractNumber('а я томат'); // NaN
+extractNumber(2023); // 2023
+extractNumber(-1); // 1
+extractNumber(1.5); // 15
