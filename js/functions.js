@@ -45,3 +45,26 @@ extractNumber('а я томат'); // NaN
 extractNumber(2023); // 2023
 extractNumber(-1); // 1
 extractNumber(1.5); // 15
+
+// 4. Функция принимает время начала и конца рабочего дня, а также время старта и продолжительность встречи в минутах и возвращает true, если встреча не выходит за рамки рабочего дня, и false, если выходит
+
+const checkSchedule = (dayStart, dayEnd, meetingStart, meetingDuration) => {
+
+  const parseTime = (text) => {
+    const [hours, minutes] = text.split(':').map(Number);
+    return hours * 60 + minutes;
+  };
+
+  const dayStartMinutes = parseTime(dayStart);
+  const dayEndMinutes = parseTime(dayEnd);
+  const meetingStartMinutes = parseTime(meetingStart);
+  const meetingEndMinutes = meetingStartMinutes + meetingDuration;
+
+  return meetingStartMinutes >= dayStartMinutes && meetingEndMinutes <= dayEndMinutes;
+};
+
+checkSchedule('08:00', '17:30', '14:00', 90); // true
+checkSchedule('8:0', '10:0', '8:0', 120); // true
+checkSchedule('08:00', '14:30', '14:00', 90); // false
+checkSchedule('14:00', '17:30', '08:0', 90); // false
+checkSchedule('8:00', '17:30', '08:00', 900); // false
