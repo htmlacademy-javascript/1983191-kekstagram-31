@@ -1,3 +1,3 @@
-import {createGallery} from './mock-data.js';
+import { createPictures } from './create-pictures.js';
 
-createGallery();
+createPictures();
