@@ -3,15 +3,15 @@ import {createGallery} from './mock-data.js';
 const purturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const picturesList = createGallery();
-
-const createPicture = () => {
+const createPictures = () => {
+  const picturesList = createGallery();
   const picturesListFragment = document.createDocumentFragment();
 
   picturesList.forEach(({url, description, likes, comments}) => {
     const pictureItem = pictureTemplate.cloneNode(true);
-    pictureItem.querySelector('.picture__img').src = url;
-    pictureItem.querySelector('.picture__img').alt = description;
+    const pictureImg = pictureItem.querySelector('.picture__img');
+    pictureImg.src = url;
+    pictureImg.alt = description;
     pictureItem.querySelector('.picture__likes').textContent = likes;
     pictureItem.querySelector('.picture__comments').textContent = comments.length;
 
@@ -21,4 +21,4 @@ const createPicture = () => {
   purturesContainer.appendChild(picturesListFragment);
 };
 
-export {createPicture};
+export {createPictures};

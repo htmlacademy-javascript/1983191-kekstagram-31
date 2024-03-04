@@ -1,3 +1,3 @@
-import { createPicture } from './picture';
+import { createPictures } from './picture.js';
 
-createPicture();
+createPictures();
