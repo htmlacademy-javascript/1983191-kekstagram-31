@@ -1,3 +1,5 @@
-import { createPictures } from './create-pictures.js';
+import {createGallery} from './mock-data.js';
+import { thumbnails } from './thumbnails.js';
 
-createPictures();
+const photos = createGallery();
+thumbnails(photos);
