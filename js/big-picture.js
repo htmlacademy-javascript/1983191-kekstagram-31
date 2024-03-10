@@ -1,16 +1,20 @@
 import {isEscapeKey} from './util.js';
+import { removeComments, renderComments } from './comments.js';
 
 const body = document.body;
 const picrureModal = document.querySelector('.big-picture');
 const picrureModalClose = picrureModal.querySelector('.big-picture__cancel');
 
-const renderModal = (photo) => {
+const renderModal = ({url, likes, comments, description}) => {
   const image = picrureModal.querySelector('.big-picture__img img');
-  image.src = photo.url;
-  image.alt = photo.description;
+  image.src = url;
+  image.alt = description;
 
-  picrureModal.querySelector('.likes-count').textContent = photo.likes;
-  picrureModal.querySelector('.social__caption').textContent = photo.description;
+  picrureModal.querySelector('.likes-count').textContent = likes;
+  picrureModal.querySelector('.social__caption').textContent = description;
+
+  removeComments();
+  renderComments(comments);
 };
 
 function onDocumentKeydown(evt) {
