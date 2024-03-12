@@ -12,9 +12,10 @@ const renderModal = ({url, likes, comments, description}) => {
 
   picrureModal.querySelector('.likes-count').textContent = likes;
   picrureModal.querySelector('.social__caption').textContent = description;
+  picrureModal.querySelector('.social__comment-total-count').textContent = comments.length;
 
   removeComments();
-  renderComments(comments);
+  renderComments(comments, true);
 };
 
 function onDocumentKeydown(evt) {
@@ -35,10 +36,6 @@ function openModal (photo) {
   body.classList.add('modal-open');
 
   renderModal(photo);
-
-  picrureModal.querySelector('.social__comment-count').classList.add('hidden');
-  picrureModal.querySelector('.comments-loader').classList.add('hidden');
-
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
