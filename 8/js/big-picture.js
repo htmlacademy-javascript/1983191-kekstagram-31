@@ -14,8 +14,7 @@ const renderModal = ({url, likes, comments, description}) => {
   picrureModal.querySelector('.social__caption').textContent = description;
   picrureModal.querySelector('.social__comment-total-count').textContent = comments.length;
 
-  removeComments();
-  renderComments(comments, true);
+  renderComments(comments);
 };
 
 function onDocumentKeydown(evt) {
@@ -26,6 +25,7 @@ function onDocumentKeydown(evt) {
 }
 
 function closeModal () {
+  removeComments();
   picrureModal.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
