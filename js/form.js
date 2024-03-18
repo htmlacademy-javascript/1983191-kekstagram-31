@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import { validateForm } from './validate-form.js';
+import { validateForm, resetValidator } from './validate-form.js';
 
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
@@ -10,8 +10,12 @@ const uploadModalClose = uploadOverlay.querySelector('.img-upload__cancel');
 const hashtagsField = uploadOverlay.querySelector('.text__hashtags');
 const descriptionField = uploadOverlay.querySelector('.text__description');
 
+const isTextFieldFocused = () =>
+  document.activeElement === hashtagsField ||
+  document.activeElement === descriptionField;
+
 function onDocumentKeydown(evt) {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) && !isTextFieldFocused()) {
     evt.preventDefault();
     closeModal();
   }
@@ -27,7 +31,7 @@ function closeModal() {
   uploadInput.value = '';
   hashtagsField.value = '';
   descriptionField.value = '';
-
+  resetValidator();
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -35,11 +39,6 @@ function closeModal() {
 
 uploadInput.addEventListener('change', openModal);
 
-uploadModalClose.addEventListener('click', () => {
-  closeModal();
-});
-
-descriptionField.addEventListener('keydown', (evt) => evt.stopPropagation());
-hashtagsField.addEventListener('keydown', (evt) => evt.stopPropagation());
+uploadModalClose.addEventListener('click', closeModal);
 
 validateForm();

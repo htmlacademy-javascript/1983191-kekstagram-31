@@ -22,33 +22,32 @@ pristine.addValidator(descriptionField,
   `Не более ${MAX_DESCRIPTION_LENGTH} символов`,
 );
 
-const isHashtagsAmountValid = (value) => value.trim().split(' ').length <= MAX_HASHTAGS_AMOUNT;
+const normalizeTags = (tags) => tags.trim().split(' ').map((tag) => tag.toLowerCase()).filter((tag) => tag.trim().length);
+
+const isHashtagsAmountValid = (value) => normalizeTags(value).length <= MAX_HASHTAGS_AMOUNT;
+
+const validateHashtags = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
+
+const hasUniqueHashtags = (value) => normalizeTags(value).length === new Set(normalizeTags(value)).size;
 
 pristine.addValidator(hashtagsField,
   isHashtagsAmountValid,
   `Не более ${MAX_HASHTAGS_AMOUNT} хештегов`,
 );
 
-const isHashtagValid = (value) => VALID_SYMBOLS.test(value);
-const validateHashtags = (value) => {
-  const tags = value.trim().split(' ').filter((tag) => tag.trim().length);
-  return tags.every(isHashtagValid);
-};
-
 pristine.addValidator(hashtagsField,
   validateHashtags,
   `Хэштег должен начинаться с # и содержать не более ${MAX_HASHTAG_LENGTH} символов в теге. Разрешены только буквы кириллицы / латиницы и цифры`,
 );
 
-const hasUniqueHashtags = (value) => {
-  const lowerTags = value.trim().split(' ').map((tag) => tag.toLowerCase());
-  return lowerTags.length === new Set(lowerTags).size;
-};
-
 pristine.addValidator(hashtagsField,
   hasUniqueHashtags,
   'Хэштеги не должны повторяться',
 );
+
+const resetValidator = () => {
+  pristine.reset();
+};
 
 const validateForm = () => {
   form.addEventListener('submit', (evt) => {
@@ -58,4 +57,4 @@ const validateForm = () => {
   });
 };
 
-export { validateForm };
+export { validateForm, resetValidator };
