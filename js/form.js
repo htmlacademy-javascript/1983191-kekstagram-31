@@ -1,5 +1,7 @@
 import {isEscapeKey} from './util.js';
 import { validateForm, resetValidator } from './validate-form.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
@@ -32,6 +34,8 @@ function closeModal() {
   hashtagsField.value = '';
   descriptionField.value = '';
   resetValidator();
+  resetScale();
+  resetEffects();
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
