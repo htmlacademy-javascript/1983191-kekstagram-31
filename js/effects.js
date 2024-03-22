@@ -48,7 +48,7 @@ const EFFECTS = [
   }
 ];
 
-const DEFAULT_EFFECT = EFFECTS.find((effect) => effect.name === 'none');
+const DEFAULT_EFFECT = EFFECTS[0];
 
 const preview = document.querySelector('.img-upload__preview img');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
@@ -58,7 +58,7 @@ const effectsContainer = document.querySelector('.effects');
 
 let currentEffect = DEFAULT_EFFECT;
 
-const isDefault = () => currentEffect === DEFAULT_EFFECT;
+const isDefault = () => currentEffect.name === DEFAULT_EFFECT.name;
 
 const showSlider = () => {
   sliderContainer.classList.remove('hidden');
