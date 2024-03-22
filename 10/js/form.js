@@ -16,6 +16,10 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagsField ||
   document.activeElement === descriptionField;
 
+const onUploadModalCloseClick = () => {
+  closeModal();
+};
+
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt) && !isTextFieldFocused()) {
     evt.preventDefault();
@@ -26,6 +30,7 @@ function onDocumentKeydown(evt) {
 function openModal() {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  uploadModalClose.addEventListener('click', onUploadModalCloseClick);
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
@@ -38,11 +43,10 @@ function closeModal() {
   resetEffects();
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
+  uploadModalClose.removeEventListener('click', onUploadModalCloseClick);
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
 uploadInput.addEventListener('change', openModal);
-
-uploadModalClose.addEventListener('click', closeModal);
 
 validateForm();
