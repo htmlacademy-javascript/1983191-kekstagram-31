@@ -3,9 +3,9 @@ import { removeComments, renderComments } from './comments.js';
 
 const body = document.body;
 const picrureModal = document.querySelector('.big-picture');
-const picrureModalClose = picrureModal.querySelector('.big-picture__cancel');
+const picrureModalCloseBtn = picrureModal.querySelector('.big-picture__cancel');
 
-const renderModal = ({url, likes, comments, description}) => {
+const renderPictureModal = ({url, likes, comments, description}) => {
   const image = picrureModal.querySelector('.big-picture__img img');
   image.src = url;
   image.alt = description;
@@ -17,30 +17,31 @@ const renderModal = ({url, likes, comments, description}) => {
   renderComments(comments);
 };
 
+const onPicrureModalCloseBtnClick = () => {
+  closePictureModal();
+};
+
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeModal();
+    closePictureModal();
   }
 }
 
-function closeModal () {
+function closePictureModal () {
   removeComments();
   picrureModal.classList.add('hidden');
   body.classList.remove('modal-open');
+  picrureModalCloseBtn.removeEventListener('click', onPicrureModalCloseBtnClick);
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-function openModal (photo) {
+function openPictureModal (photo) {
   picrureModal.classList.remove('hidden');
   body.classList.add('modal-open');
-
-  renderModal(photo);
+  renderPictureModal(photo);
+  picrureModalCloseBtn.addEventListener('click', onPicrureModalCloseBtnClick);
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
-picrureModalClose.addEventListener('click', () => {
-  closeModal ();
-});
-
-export {openModal};
+export {openPictureModal};

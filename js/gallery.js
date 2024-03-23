@@ -1,4 +1,4 @@
-import { openModal } from './big-picture.js';
+import { openPictureModal } from './big-picture.js';
 
 const container = document.querySelector('.pictures');
 
@@ -14,8 +14,8 @@ const gallery = (photos) => {
     const targetPictureId = targetPicture.getAttribute('data-id');
     const targetPhoto = photos.find((photo) => photo.id === +targetPictureId);
 
-    openModal(targetPhoto);
+    openPictureModal(targetPhoto);
   });
 };
 
-export {gallery};
+export { gallery };
