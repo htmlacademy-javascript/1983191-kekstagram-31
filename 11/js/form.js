@@ -16,12 +16,14 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagsField ||
   document.activeElement === descriptionField;
 
+const isErrorMessageShown = () => Boolean(document.querySelector('.error'));
+
 const onUploadModalCloseClick = () => {
   closeUploadModal();
 };
 
 function onDocumentKeydown(evt) {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !isErrorMessageShown()) {
     evt.preventDefault();
     closeUploadModal();
   }
