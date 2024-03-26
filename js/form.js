@@ -1,5 +1,5 @@
-import {isEscapeKey} from './util.js';
-import { validateForm, resetValidator } from './validate-form.js';
+import { isEscapeKey } from './util.js';
+import { resetValidator } from './validate-form.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
 
@@ -16,28 +16,28 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagsField ||
   document.activeElement === descriptionField;
 
+const isErrorMessageShown = () => Boolean(document.querySelector('.error'));
+
 const onUploadModalCloseClick = () => {
-  closeModal();
+  closeUploadModal();
 };
 
 function onDocumentKeydown(evt) {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !isErrorMessageShown()) {
     evt.preventDefault();
-    closeModal();
+    closeUploadModal();
   }
 }
 
-function openModal() {
+function openUploadModal() {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   uploadModalClose.addEventListener('click', onUploadModalCloseClick);
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
-function closeModal() {
-  uploadInput.value = '';
-  hashtagsField.value = '';
-  descriptionField.value = '';
+function closeUploadModal() {
+  form.reset();
   resetValidator();
   resetScale();
   resetEffects();
@@ -47,6 +47,6 @@ function closeModal() {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-uploadInput.addEventListener('change', openModal);
+uploadInput.addEventListener('change', openUploadModal);
 
-validateForm();
+export {openUploadModal, closeUploadModal};

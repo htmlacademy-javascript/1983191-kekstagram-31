@@ -1,8 +1,17 @@
-import {createGallery} from './mock-data.js';
 import { thumbnails } from './thumbnails.js';
 import { gallery } from './gallery.js';
-import './form.js';
+import { setFormSubmit } from './validate-form.js';
+import { getData } from './api.js';
+import { showGalleryErrorMessage } from './message.js';
 
-const photos = createGallery();
-thumbnails(photos);
-gallery(photos);
+getData()
+  .then((photos) => {
+    thumbnails(photos);
+    gallery(photos);
+  })
+  .catch(() => {
+    showGalleryErrorMessage();
+  });
+
+setFormSubmit();
+
