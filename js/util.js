@@ -1,3 +1,5 @@
+
+
 /* Генерация случайного целого числа из диапазона */
 const getRandomInteger = (firstNumber, secondNumber) => {
   const lower = Math.ceil(Math.min(firstNumber, secondNumber));
@@ -37,4 +39,25 @@ function createIdGenerator () {
 /* Проверка нажатия клавиши ESC */
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomIntegerFromRange, createIdGenerator, isEscapeKey };
+/* Устранение дребезга */
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+/* Пропуск кадров */
+function throttle (callback, delayBetweenFrames) {
+  let lastTime = 0;
+  return (...rest) => {
+    const now = new Date();
+    if (now - lastTime >= delayBetweenFrames) {
+      callback.apply(this, rest);
+      lastTime = now;
+    }
+  };
+}
+
+export {getRandomInteger, getRandomIntegerFromRange, createIdGenerator, isEscapeKey, debounce, throttle };
