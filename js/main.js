@@ -2,7 +2,7 @@ import { renderThumbnails } from './thumbnails.js';
 import { gallery } from './gallery.js';
 import { setFormSubmit } from './validate-form.js';
 import { getData } from './api.js';
-import { showGalleryErrorMessage } from './message.js';
+import { dataErrorMessage } from './message.js';
 import { initFilter } from './filter.js';
 
 getData()
@@ -12,7 +12,7 @@ getData()
     initFilter(photos);
   })
   .catch(() => {
-    showGalleryErrorMessage();
+    dataErrorMessage();
   });
 
 setFormSubmit();
