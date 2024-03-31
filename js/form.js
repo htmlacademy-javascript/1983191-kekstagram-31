@@ -74,4 +74,4 @@ function closeUploadModal() {
 
 uploadInput.addEventListener('change', onPictureUpload);
 
-export {onPictureUpload, closeUploadModal};
+export { closeUploadModal };
