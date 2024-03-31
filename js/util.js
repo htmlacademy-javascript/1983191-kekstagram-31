@@ -1,4 +1,4 @@
-
+const DEBOUNCE_DELAY = 500;
 
 /* Генерация случайного целого числа из диапазона */
 const getRandomInteger = (firstNumber, secondNumber) => {
@@ -40,7 +40,7 @@ function createIdGenerator () {
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 /* Устранение дребезга */
-function debounce (callback, timeoutDelay = 500) {
+function debounce (callback, timeoutDelay = DEBOUNCE_DELAY) {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
