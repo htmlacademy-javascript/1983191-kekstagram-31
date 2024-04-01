@@ -9,7 +9,7 @@ getData()
   .then((photos) => {
     renderThumbnails(photos);
     gallery(photos);
-    initFilter(photos);
+    initFilter(renderThumbnails, photos);
   })
   .catch(() => {
     dataErrorMessage();

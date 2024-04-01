@@ -44,4 +44,4 @@ function openPictureModal (photo) {
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
-export {openPictureModal};
+export { openPictureModal };
