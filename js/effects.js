@@ -76,6 +76,10 @@ noUiSlider.create(sliderElement, {
   start: DEFAULT_EFFECT.max,
   step: DEFAULT_EFFECT.step,
   connect: 'lower',
+  format: {
+    to: (value) => value.toFixed((Number.isInteger(value)) ? 0 : 1),
+    from: Number.parseFloat,
+  },
 });
 
 const updateSliderOptions = () => {

@@ -55,4 +55,4 @@ const renderComments = (photoComments) => {
   commentsLoader.addEventListener('click', renderNextComments);
 };
 
-export {removeComments, renderComments};
+export { removeComments, renderComments };

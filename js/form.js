@@ -2,6 +2,9 @@ import { isEscapeKey } from './util.js';
 import { resetValidator } from './validate-form.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
+import { dataErrorMessage } from './message.js';
+
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
@@ -11,6 +14,28 @@ const uploadOverlay = form.querySelector('.img-upload__overlay');
 const uploadModalClose = uploadOverlay.querySelector('.img-upload__cancel');
 const hashtagsField = uploadOverlay.querySelector('.text__hashtags');
 const descriptionField = uploadOverlay.querySelector('.text__description');
+
+const preview = uploadOverlay.querySelector('.img-upload__preview img');
+const effectsPreviews = uploadOverlay.querySelectorAll('.effects__preview');
+
+const onPictureUpload = () => {
+  const file = uploadInput.files[0];
+  const fileName = file.name.toLowerCase();
+  const fileExt = fileName.split('.').pop();
+  const matches = FILE_TYPES.includes(fileExt);
+
+  if(!matches) {
+    dataErrorMessage('Неверный тип файла');
+    return;
+  }
+
+  preview.src = URL.createObjectURL(file);
+  effectsPreviews.forEach((item) => {
+    item.style.backgroundImage = `url('${preview.src}')`;
+  });
+
+  openUploadModal();
+};
 
 const isTextFieldFocused = () =>
   document.activeElement === hashtagsField ||
@@ -47,6 +72,6 @@ function closeUploadModal() {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-uploadInput.addEventListener('change', openUploadModal);
+uploadInput.addEventListener('change', onPictureUpload);
 
-export {openUploadModal, closeUploadModal};
+export { closeUploadModal };
