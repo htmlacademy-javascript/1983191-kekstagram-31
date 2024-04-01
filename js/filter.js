@@ -1,14 +1,7 @@
+import { RANDOM_PICTURES_AMOUNT, RENDER_DELAY, ACTIVE_BUTTON_CLASS, Filter } from './consts.js';
 import { debounce } from './util.js';
 import { removeThumbnails } from './thumbnails.js';
 
-const RANDOM_PICTURES_AMOUNT = 10;
-const RENDER_DELAY = 500;
-const Filter = {
-  DEFAULT: 'filter-default',
-  RANDOM: 'filter-random',
-  DISCUSSED: 'filter-discussed',
-};
-const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
 const filters = document.querySelector('.img-filters');
 let currentActiveButton = filters.querySelector('#filter-default');
 

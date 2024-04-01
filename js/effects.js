@@ -1,62 +1,12 @@
-const EFFECTS = [
-  {
-    name: 'none',
-    filter: 'none',
-    min: 0,
-    max: 1,
-    unit: '',
-  },
-  {
-    name: 'chrome',
-    filter: 'grayscale',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: '',
-  },
-  {
-    name: 'sepia',
-    filter: 'sepia',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: '',
-  },
-  {
-    name: 'marvin',
-    filter: 'invert',
-    min: 0,
-    max: 100,
-    step: 1,
-    unit: '%',
-  },
-  {
-    name: 'phobos',
-    filter: 'blur',
-    min: 0,
-    max: 3,
-    step: 0.1,
-    unit: 'px',
-  },
-  {
-    name: 'heat',
-    filter: 'brightness',
-    min: 1,
-    max: 3,
-    step: 0.1,
-    unit: '',
-  }
-];
+import { EFFECTS, DEFAULT_EFFECT } from './consts.js';
 
-const DEFAULT_EFFECT = EFFECTS[0];
+let currentEffect = DEFAULT_EFFECT;
 
 const preview = document.querySelector('.img-upload__preview img');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
 const sliderElement = sliderContainer.querySelector('.effect-level__slider');
 const effectValue = sliderContainer.querySelector('.effect-level__value');
 const effectsContainer = document.querySelector('.effects');
-
-let currentEffect = DEFAULT_EFFECT;
 
 const isDefault = () => currentEffect.name === DEFAULT_EFFECT.name;
 

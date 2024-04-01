@@ -1,4 +1,5 @@
-const COMMENTS_LOADING_STEP = 5;
+import { COMMENTS_LOADING_STEP } from './consts.js';
+
 let currentCount = 0;
 let comments = [];
 

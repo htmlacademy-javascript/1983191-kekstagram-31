@@ -1,9 +1,7 @@
-const DEBOUNCE_DELAY = 500;
+import { DEBOUNCE_DELAY } from './consts.js';
 
-/* Проверка нажатия клавиши ESC */
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-/* Устранение дребезга */
 function debounce (callback, timeoutDelay = DEBOUNCE_DELAY) {
   let timeoutId;
   return (...rest) => {
