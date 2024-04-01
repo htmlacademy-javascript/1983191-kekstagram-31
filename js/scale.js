@@ -1,7 +1,4 @@
-const SCALE_STEP = 25;
-const MIN_SCALE_VALUE = 25;
-const MAX_SCALE_VALUE = 100;
-const DEFAULT_SCALE_VALUE = MAX_SCALE_VALUE;
+import { SCALE_STEP, MIN_SCALE_VALUE, MAX_SCALE_VALUE, DEFAULT_SCALE_VALUE } from './consts.js';
 
 const scale = document.querySelector('.img-upload__scale');
 const zoomOutButton = scale.querySelector('.scale__control--smaller');

@@ -1,16 +1,7 @@
+import { MAX_HASHTAGS_AMOUNT, MAX_HASHTAG_LENGTH, MAX_DESCRIPTION_LENGTH, VALID_SYMBOLS, SubmitButtonText } from './consts.js';
 import { sendData } from './api.js';
 import { closeUploadModal } from './form.js';
 import { showErrorModal, showSuccessModal } from './message.js';
-
-const MAX_HASHTAGS_AMOUNT = 5;
-const MAX_HASHTAG_LENGTH = 20;
-const MAX_DESCRIPTION_LENGTH = 140;
-const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-
-const submitButtonText = {
-  IDLE: 'Сохранить',
-  SENDING: 'Сохраняю...'
-};
 
 const form = document.querySelector('.img-upload__form');
 const hashtagsField = form.querySelector('.text__hashtags');
@@ -60,12 +51,12 @@ const resetValidator = () => {
 
 const blockSubmitButton = () => {
   submitButton.disabled = true;
-  submitButton.textContent = submitButtonText.SENDING;
+  submitButton.textContent = SubmitButtonText.SENDING;
 };
 
 const unblockSubmitButton = () => {
   submitButton.disabled = false;
-  submitButton.textContent = submitButtonText.IDLE;
+  submitButton.textContent = SubmitButtonText.IDLE;
 };
 
 const setFormSubmit = () => {

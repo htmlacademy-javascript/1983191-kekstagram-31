@@ -1,6 +1,6 @@
+import { MESSAGE_SHOW_TIME } from './consts.js';
 import { isEscapeKey } from './util.js';
 
-const MESSAGE_SHOW_TIME = 5000;
 const messageErrorTemplate = document.querySelector('#data-error').content;
 
 const dataErrorMessage = (errorMessage) => {

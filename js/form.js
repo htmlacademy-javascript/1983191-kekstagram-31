@@ -1,10 +1,9 @@
+import { FILE_TYPES } from './consts.js';
 import { isEscapeKey } from './util.js';
 import { resetValidator } from './validate-form.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
 import { dataErrorMessage } from './message.js';
-
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
