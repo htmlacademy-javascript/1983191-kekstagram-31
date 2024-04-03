@@ -3,11 +3,11 @@ import { COMMENTS_LOADING_STEP } from './consts.js';
 let currentCount = 0;
 let comments = [];
 
-const picrureModal = document.querySelector('.big-picture');
-const container = picrureModal.querySelector('.social__comments');
+const pictureModal = document.querySelector('.big-picture');
+const container = pictureModal.querySelector('.social__comments');
 const template = document.querySelector('#comment').content.querySelector('.social__comment');
-const commentsLoader = picrureModal.querySelector('.comments-loader');
-const shownCommentsElement = picrureModal.querySelector('.social__comment-shown-count');
+const commentsLoader = pictureModal.querySelector('.comments-loader');
+const shownCommentsElement = pictureModal.querySelector('.social__comment-shown-count');
 container.innerHTML = '';
 
 const createComment = ({avatar, name, message}) => {
