@@ -59,7 +59,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = SubmitButtonText.IDLE;
 };
 
-const setFormSubmit = () => {
+const listenToFormSubmit = () => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -79,4 +79,4 @@ const setFormSubmit = () => {
   });
 };
 
-export { resetValidator, setFormSubmit };
+export { resetValidator, listenToFormSubmit };

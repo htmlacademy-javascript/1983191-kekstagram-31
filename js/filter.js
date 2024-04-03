@@ -41,12 +41,12 @@ const filterPictures = (evt, cb, photos) => {
 const initFilter = (cb, photos) => {
   showFilters();
 
-  const getDebouncedFunction = debounce((data) => {
+  const requestPicturesDebounced = debounce((data) => {
     removeThumbnails();
     cb(data);
   }, RENDER_DELAY);
 
-  const onFilterBtnClick = (evt) => filterPictures(evt, getDebouncedFunction, photos);
+  const onFilterBtnClick = (evt) => filterPictures(evt, requestPicturesDebounced, photos);
   filters.addEventListener('click', onFilterBtnClick);
 };
 
