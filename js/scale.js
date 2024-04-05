@@ -23,9 +23,17 @@ const zoomOut = () => {
   );
 };
 
+const onZoomInButtonClick = () => {
+  zoomIn();
+};
+
+const onZoomOutButtonClick = () => {
+  zoomOut();
+};
+
 const resetScale = () => scalePreview(DEFAULT_SCALE_VALUE);
 
-zoomInButton.addEventListener('click', zoomIn);
-zoomOutButton.addEventListener('click', zoomOut);
+zoomInButton.addEventListener('click', onZoomInButtonClick);
+zoomOutButton.addEventListener('click', onZoomOutButtonClick);
 
 export { resetScale };

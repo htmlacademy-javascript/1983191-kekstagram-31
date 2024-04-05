@@ -3,7 +3,7 @@ import { isEscapeKey } from './util.js';
 
 const messageErrorTemplate = document.querySelector('#data-error').content;
 
-const dataErrorMessage = (errorMessage) => {
+const showDataErrorMessage = (errorMessage) => {
   const messageErrorContainer = messageErrorTemplate.cloneNode(true);
 
   if (errorMessage) {
@@ -39,6 +39,10 @@ function onDocumentKeydown(evt) {
   }
 }
 
+function onModalButtonClick() {
+  closeActiveModal();
+}
+
 const showModal = (type) => {
   activeModalType = type;
   document.addEventListener('click', onOuterBodyClick);
@@ -57,7 +61,7 @@ function createModalElement(type) {
   const template = document.querySelector(`#${type}`).content;
   const modalElement = template.querySelector(`.${type}`).cloneNode(true);
 
-  modalElement.querySelector(`.${type}__button`).addEventListener('click', closeActiveModal);
+  modalElement.querySelector(`.${type}__button`).addEventListener('click', onModalButtonClick);
 
   return modalElement;
 }
@@ -66,4 +70,4 @@ const showSuccessModal = () => showModal('success');
 
 const showErrorModal = () => showModal('error');
 
-export { dataErrorMessage, showSuccessModal, showErrorModal };
+export { showDataErrorMessage, showSuccessModal, showErrorModal };
