@@ -42,18 +42,22 @@ const renderNextComments = () => {
   currentCount += COMMENTS_LOADING_STEP;
 };
 
+const onCommentsLoaderClick = () => {
+  renderNextComments();
+};
+
 const removeComments = () => {
   currentCount = 0;
   container.innerHTML = '';
   commentsLoader.classList.remove('hidden');
-  commentsLoader.removeEventListener('click', renderNextComments);
+  commentsLoader.removeEventListener('click', onCommentsLoaderClick);
 };
 
 const renderComments = (photoComments) => {
   comments = photoComments;
   renderNextComments();
 
-  commentsLoader.addEventListener('click', renderNextComments);
+  commentsLoader.addEventListener('click', onCommentsLoaderClick);
 };
 
 export { removeComments, renderComments };

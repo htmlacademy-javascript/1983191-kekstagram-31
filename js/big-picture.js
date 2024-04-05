@@ -17,7 +17,7 @@ const renderPictureModal = ({url, likes, comments, description}) => {
   renderComments(comments);
 };
 
-const onpictureModalCloseBtnClick = () => {
+const onPictureModalCloseBtnClick = () => {
   closePictureModal();
 };
 
@@ -32,7 +32,7 @@ function closePictureModal () {
   removeComments();
   pictureModal.classList.add('hidden');
   body.classList.remove('modal-open');
-  pictureModalCloseBtn.removeEventListener('click', onpictureModalCloseBtnClick);
+  pictureModalCloseBtn.removeEventListener('click', onPictureModalCloseBtnClick);
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
@@ -40,7 +40,7 @@ function openPictureModal (photo) {
   pictureModal.classList.remove('hidden');
   body.classList.add('modal-open');
   renderPictureModal(photo);
-  pictureModalCloseBtn.addEventListener('click', onpictureModalCloseBtnClick);
+  pictureModalCloseBtn.addEventListener('click', onPictureModalCloseBtnClick);
   document.addEventListener('keydown', onDocumentKeydown);
 }
 

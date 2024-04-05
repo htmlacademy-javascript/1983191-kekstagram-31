@@ -3,7 +3,7 @@ import { isEscapeKey } from './util.js';
 import { resetValidator } from './validate-form.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
-import { dataErrorMessage } from './message.js';
+import { showDataErrorMessage } from './message.js';
 
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
@@ -17,14 +17,14 @@ const descriptionField = uploadOverlay.querySelector('.text__description');
 const preview = uploadOverlay.querySelector('.img-upload__preview img');
 const effectsPreviews = uploadOverlay.querySelectorAll('.effects__preview');
 
-const onPictureUpload = () => {
+const onUploadInputChange = () => {
   const file = uploadInput.files[0];
   const fileName = file.name.toLowerCase();
   const fileExt = fileName.split('.').pop();
   const matches = FILE_TYPES.includes(fileExt);
 
   if(!matches) {
-    dataErrorMessage('Неверный тип файла');
+    showDataErrorMessage('Неверный тип файла');
     return;
   }
 
@@ -71,6 +71,6 @@ function closeUploadModal() {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-uploadInput.addEventListener('change', onPictureUpload);
+uploadInput.addEventListener('change', onUploadInputChange);
 
 export { closeUploadModal };
